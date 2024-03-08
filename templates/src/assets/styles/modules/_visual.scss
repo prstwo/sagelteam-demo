@@ -15,7 +15,7 @@
 
 		@include mq(tablet) {
 			margin-right: -$page-padding-big;
-			grid-column: 3 / span 10;
+			grid-column: 7 / span 10;
 			aspect-ratio: 820 / 410;
 		}
 

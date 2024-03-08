@@ -33,12 +33,14 @@ const fetchDataFromAPI = async () => {
 		);
 
 		// Update the crewMembers variable with the response
-		console.log('crewMembers.value', crewMembers.value);
 		if (crewMembers.value !== null) {
 			crewMembers.value.data.push(...response.data.data);
+			crewMembers.value.meta.pagination = response.data.meta.pagination;
 		} else {
 			crewMembers.value = response.data;
 		}
+		// update show load more button state
+		// if there is no page remained
 		if (
 			crewMembers.value.meta.pagination.current_page >=
 			crewMembers.value.meta.pagination.total_pages
@@ -191,10 +193,13 @@ const loadMore = () => {
 						v-for="(crewItem, index) of crewMembers.data"
 						:key="index"
 					>
-						<img :src="crewItem.image" :alt="crewItem.name" />
-						<div class="crew-info">
-							<h3>Crew Member 1</h3>
-							<p>Information about Crew Member 1</p>
+						<img :src="crewItem.image" :alt="crewItem.name" class="lazyload"/>
+						<div class="crew__info">
+							<h3 class="color-primary">{{ crewItem.name }}</h3>
+							<p v-for="(duty, dIndex) of crewItem.duty_slugs" :key="dIndex">
+								<span class="crew__identifier">
+									a
+								</span> {{ duty }}</p>
 						</div>
 					</div>
 				</div>
@@ -320,25 +325,22 @@ $maximumGridContainers: 6;
 @for $i from 1 through $maximumGridContainers {
 	.grid-container-#{$i} {
 		display: grid;
-
+		gap: 0;
 		@if $i == 1 {
-			gap: 0;
-
 			grid-template-columns: minmax(250px, 500px);
 			justify-content: center;
 		} @else if $i == 2 {
-			gap: 10px;
-
 			grid-template-columns: minmax(150px, 300px) minmax(150px, 300px);
 			justify-content: center;
 		} @else {
-			gap: 10px;
-
 			grid-template-columns: repeat(
 				#{$i},
 				1fr
 			); // Set the number of columns dynamically
 		}
+	}
+	.grid-container-#{$i} .grid-item:nth-child(#{$i}n) .crew__info {
+		left: 0 !important;
 	}
 }
 
@@ -349,24 +351,44 @@ $maximumGridContainers: 6;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		filter: grayscale(100%);
+		transition: all 0.5s ease;
+	}
+	&:hover img {
+		filter: grayscale(0);
 	}
 
 	&:hover {
-		.crew-info {
-			display: block;
+		.crew__info {
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			z-index: 1;
 		}
 	}
 }
 
-.crew-info {
+.crew__info {
 	display: none;
 	position: absolute;
+	height: 100%;
+	width: 100%;
 	top: 0;
 	left: 100%;
 	background-color: $color-light;
 	padding: 10px;
 	border: 1px solid #ccc;
+	z-index: -1;
 }
+.crew__info{
+	p, h3{
+		margin-bottom: 8px;
+	}
+}
+.crew__info p:first-of-type .crew__identifier{
+	text-transform: uppercase;
+}
+
 
 @media (max-width: 47.49em) {
 	.crew__header {

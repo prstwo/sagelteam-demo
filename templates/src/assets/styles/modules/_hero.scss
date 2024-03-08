@@ -22,7 +22,11 @@
 		&:after {
 			content: '';
 			@include fillout;
-			background: linear-gradient(180deg, rgba(0, 0, 0, 0.66) 6.22%, rgba(255, 255, 255, 0) 51.23%);
+			background: linear-gradient(
+				180deg,
+				rgba(0, 0, 0, 0.66) 6.22%,
+				rgba(255, 255, 255, 0) 51.23%
+			);
 		}
 
 		&__image {
@@ -56,14 +60,29 @@
 
 	&__teasers {
 		margin: 0 #{-$page-padding-small};
+		padding: 0 20px;
 
 		@include mq(tablet) {
 			margin: 0 #{-$page-padding-big};
+			padding: 0 80px;
 		}
 
 		@include mq(tablet-landscape) {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
+			.teaser:last-child {
+				z-index: 2;
+				// clip-path: polygon(0 31%, 100% 0, 100% 100%, 0% 100%);
+				clip-path: polygon(0 100px, 100% 0, 100% 100%, 0% 100%);
+			}
+			.teaser:nth-child(2) {
+				z-index: 2;
+				clip-path: polygon(0% 50px, 100px 0, 323% 100%, 0% 100%);
+			}
+			.teaser:first-child {
+				z-index: 2;
+				clip-path: polygon(0% 0, 100% 50px, 100% 100%, 0% 100%);
+			}
 		}
 
 		.teaser {

@@ -25,7 +25,7 @@ include($root_path . '/partials/head.php');
 
 				<?php echo generate_component_button([
 					'label' => 'Contact',
-					'href' =>'#contact',
+					'href' => '#contact',
 					'class' => 'navigation__button',
 					'icon' => 'arrow-right',
 					'icon_type' => 'symbol',
@@ -69,7 +69,6 @@ include($root_path . '/partials/head.php');
 			</div>
 		</div>
 	</div>
-	<div class="container">
 		<div class="hero__teasers">
 			<?php for ($i = 0; $i < 3; $i++) {
 				$style = null;
@@ -92,7 +91,6 @@ include($root_path . '/partials/head.php');
 				]);
 			} ?>
 		</div>
-	</div>
 </section>
 
 <section class="text-content">
@@ -146,8 +144,13 @@ include($root_path . '/partials/head.php');
 		</div>
 	</div>
 </section>
-<crew-section data-component='{"factory": "vue"}' />
-<footer-site data-component='{"factory": "vue"}' />
+
+<div>
+	<crew-section data-component='{"factory": "vue", "component":"crew-section"}' />
+	<!-- <footer-section data-component='{"factory": "vue", "component":"footer-section"}' /> -->
+
+</div>
+
 
 
 
