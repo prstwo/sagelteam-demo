@@ -1,0 +1,86 @@
+.hero {
+	$block: &;
+
+	overflow: hidden;
+
+	&__main {
+		position: relative;
+		z-index: 2;
+		min-height: 80vh;
+		padding: 80px 0;
+		display: flex;
+		align-items: center;
+
+		@include mq(tablet) {
+			padding: 120px 0;
+		}
+	}
+
+	&__visual {
+		@include fillout;
+
+		&:after {
+			content: '';
+			@include fillout;
+			background: linear-gradient(180deg, rgba(0, 0, 0, 0.66) 6.22%, rgba(255, 255, 255, 0) 51.23%);
+		}
+
+		&__image {
+			@include object-fit(cover);
+		}
+	}
+
+	&__inner {
+		position: relative;
+
+		&__content {
+			@include grid;
+		}
+	}
+
+	&__headline {
+		grid-column: 1 / span 7;
+
+		@include mq(tablet-landscape) {
+			grid-column: 1 / span 6;
+		}
+	}
+
+	&__text {
+		grid-column: 1 / span 6;
+
+		@include mq(tablet-landscape) {
+			grid-column: 1 / span 4;
+		}
+	}
+
+	&__teasers {
+		margin: 0 #{-$page-padding-small};
+
+		@include mq(tablet) {
+			margin: 0 #{-$page-padding-big};
+		}
+
+		@include mq(tablet-landscape) {
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+		}
+
+		.teaser {
+			@include mq(tablet-landscape) {
+				padding-top: calc(120px + 66px);
+				margin-top: -120px;
+			}
+
+			&:first-child {
+				&:before {
+					left: -30vw;
+				}
+			}
+
+			&:last-child {
+				grid-column: span 2;
+			}
+		}
+	}
+}

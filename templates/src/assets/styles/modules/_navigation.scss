@@ -1,0 +1,158 @@
+.navigation {
+	$block: &;
+
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: $z-index-navigation;
+	border-bottom: 1px solid $color-light;
+	transition: background 300ms $ease-out-quad;
+
+	&.is-mobile-navigation-open {
+		@include mq($until: tablet-landscape) {
+			position: fixed;
+			background: $color-dark;
+		}
+	}
+
+	&__inner {
+		--navigation-height: 70px;
+		display: flex;
+		align-items: center;
+		height: var(--navigation-height, 80px);
+		gap: $spacing-05;
+
+		@include mq(tablet-landscape) {
+			--navigation-height: 95px;
+			margin-right: -$page-padding-big;
+		}
+	}
+
+	&__logo {
+		height: 30px;
+
+		@include mq(tablet-landscape) {
+			height: 45px;
+		}
+
+		&__image {
+			height: 100%;
+		}
+	}
+
+	&__main {
+		display: flex;
+		margin-left: auto;
+		height: 100%;
+
+		@include mq($until: tablet-landscape) {
+			position: fixed;
+			left: 0;
+			top: var(--navigation-height);
+			width: 100vw;
+			height: calc(#{$fullheight} - var(--navigation-height));
+			background: $color-primary;
+			transform: translateX(100%);
+			flex-direction: column;
+			transition: transform 300ms $ease-out-quad;
+
+			.is-mobile-navigation-open & {
+				transform: none;
+			}
+		}
+	}
+
+	&__links {
+		list-style-type: none;
+		padding: 0;
+		margin: 0 $spacing-07 0 0;
+
+		display: flex;
+		align-items: center;
+		gap: 52px;
+
+		@include mq($until: tablet-landscape) {
+			flex-direction: column;
+			padding: $spacing-08 $spacing-04;
+			margin: 0;
+		}
+
+		&__item {
+			opacity: 0.5;
+			transition: $base_link_transition;
+
+			@include mq($until: tablet-landscape) {
+				opacity: 1;
+			}
+
+			.no-touch &:hover {
+				opacity: 1;
+			}
+		}
+	}
+
+	&__button {
+		@include mq($until: tablet-landscape) {
+			width: 100%;
+			margin-top: auto;
+		}
+
+		@include mq(tablet-landscape) {
+			display: inline-flex;
+			height: 100%;
+		}
+	}
+
+	&__mobile-toggle {
+		position: relative;
+		background: $color-primary;
+		height: var(--navigation-height, 80px);
+		width: var(--navigation-height, 80px);
+		margin-left: auto;
+		margin-right: -$page-padding-small;
+		cursor: pointer;
+
+		@include mq(tablet) {
+			margin-right: -#{$page-padding-big};
+		}
+
+		@include mq(tablet-landscape) {
+			display: none;
+		}
+
+		span {
+			@include center;
+			display: block;
+			width: 30px;
+			height: 2px;
+			background: $color-light;
+			transition: all 300ms $ease-out-quad;
+
+			&:first-child {
+				margin-top: -8px;
+
+				.is-mobile-navigation-open & {
+					transform: translate(-50%, -50%) rotate(45deg);
+					margin: 0;
+				}
+			}
+
+			&:nth-child(2) {
+				.is-mobile-navigation-open & {
+					opacity: 0;
+				}
+			}
+
+			&:last-child {
+				margin-top: 8px;
+
+				.is-mobile-navigation-open & {
+					transform: translate(-50%, -50%) rotate(-45deg);
+					margin: 0;
+				}
+			}
+		}
+	}
+}

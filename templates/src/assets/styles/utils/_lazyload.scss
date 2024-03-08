@@ -1,0 +1,8 @@
+.lazyloaded {
+	transition: opacity 300ms ease-in-out;
+}
+
+.lazyload,
+.lazyloading {
+	opacity: 0;
+}

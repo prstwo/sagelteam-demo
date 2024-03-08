@@ -1,0 +1,92 @@
+.overlay {
+	$block: &;
+	
+	position: relative;
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: $page-padding-small;
+	z-index: $z-index-overlay;
+	@include mq(tablet){
+		padding: $page-padding-big;
+	}
+
+	& > .preloader {
+		@include center();
+	}
+
+	&__content {
+		animation: showOverlayContent 0.4s forwards;
+		background-color: white;
+		width: 100%;
+		box-shadow: $shadow-l;
+		border-radius: $border-radius-s;
+		position: relative;
+		&--default {
+			max-width: 900px;
+		}
+		&--full-hd {
+			max-width: 1920px;
+		}
+
+		&--transparent {
+			box-shadow: none;
+			background-color: transparent;
+		}
+
+		&--cookie-settings {
+			max-width: 640px;
+		}
+
+		&--cookie-settings-large {
+			max-width: 1424px;
+		}
+
+		.is-removed & {
+			animation: hideOverlayContent 0.4s forwards;
+		}
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__close {
+		transition: color 0.2s;
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 1em;
+		font-size: 16px;
+		cursor: pointer;
+		z-index: 10;
+		.no-touch &:hover {
+			color: $color-primary;
+		}
+		svg {
+			pointer-events: none;
+		}
+	}
+}
+
+@keyframes showOverlayContent {
+	from {
+		opacity: 0;
+		transform: translateY(5px);
+	}
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes hideOverlayContent {
+	from {
+		opacity: 1;
+		transform: none;
+	}
+	to {
+		opacity: 0;
+		transform: translateY(5px);
+	}
+}

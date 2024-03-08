@@ -1,0 +1,35 @@
+$page-dimmer-fade-duration: 0.5s;
+
+.page {
+	$block: &;
+	&::after {
+		content: '';
+		z-index: $z-index-page-dimmer;
+		position: fixed;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		opacity: 0;
+		visibility: hidden;
+		background-color: rgba(black, 0.3);
+		transition: opacity, visibility, z-index;
+		transition-delay: 0s, 0s, $page-dimmer-fade-duration;
+		transition-duration: $page-dimmer-fade-duration, $page-dimmer-fade-duration, 0.01s;
+		pointer-events: none;
+	}
+
+	.is-dimmed & {
+		&::after {
+			visibility: visible;
+			pointer-events: auto;
+			opacity: 1;
+		}
+	}
+
+	.is-locked & {
+		position: fixed;
+		left: 0;
+		width: 100%;
+	}
+}

@@ -1,0 +1,53 @@
+.container {
+	$block: &;
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 $page-padding-small;
+	@include mq(tablet){
+		padding: 0 $page-padding-big;
+
+		// Defaults to the "default" width if no specific size is selected
+		max-width: map-get($map: $container-widths, $key: default) + ($page-padding-big * 2);
+
+		// Define container sizes
+		@each $name, $width in $container-widths {
+			&--#{$name} {
+				max-width: $width + $page-padding-big;
+			}
+		}
+
+		// "Full" type for containers that should have the side padding but otherwise should always stretch to the width of the parent element
+		&--full {
+			max-width: none;
+		}
+	}
+
+	&--no-padding-until-tablet {
+		@include mq($until: tablet) {
+			padding: 0;
+		}
+	}
+
+	&__indent {
+		margin: 0 auto;
+		@include mq(tablet) {
+			width: calc(6/8) * 100%;
+		}
+		@include mq(tablet-landscape) {
+			width: calc(10/12) * 100%;
+		}
+
+		&--no-indent-notebook {
+			@include mq(notebook) {
+				width: 100%;
+			}
+		}
+		
+		&--small {
+			@include mq(tablet) {
+				width: 50%;
+			}
+		}
+
+	}
+}

@@ -1,0 +1,41 @@
+.teaser {
+	$block: &;
+
+	position: relative;
+	padding: 35px 27px;
+
+	&:before {
+		content: '';
+		@include fillout;
+		background: $color-light-grey;
+	}
+
+	&--style {
+		&--black {
+			color: $color-light;
+
+			&:before {
+				background: $color-dark;
+			}
+		}
+	}
+
+	& > * {
+		position: relative;
+		z-index: 1;
+	}
+
+	&__illustration {
+		@include fillout;
+		@include object-fit;
+	}
+
+	&__uptitle {
+		margin-bottom: $spacing-05;
+	}
+
+	&__headline,
+	&__subtitle {
+		margin-bottom: $spacing-03;
+	}
+}

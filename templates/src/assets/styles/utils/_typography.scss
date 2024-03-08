@@ -1,0 +1,567 @@
+body,
+input,
+button,
+select,
+textarea {
+	font-family: $font-family;
+	font-size: $font-size-base;
+	line-height: $line-height;
+	color: $color-text-dark;
+	font-weight: $font-weight-medium;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	font-weight: $font-weight-extra-bold;
+}
+
+a {
+	color: $color-primary;
+	text-decoration: none;
+}
+
+p {
+	margin-bottom: 1em;
+	margin-top: 0;
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+/*
+	main headline styles
+*/
+@mixin headline-styles {
+	font-weight: $font-weight-extra-bold;
+	text-transform: uppercase
+}
+
+@mixin h1 {
+	@include headline-styles;
+	font-size: 52px;
+	line-height: 1.2;
+	@include mq(tablet) {
+		font-size: 68px;
+	}
+	@include mq(desktop) {
+		font-size: 80px;
+	}
+}
+
+@mixin h2 {
+	@include headline-styles;
+	font-size: 36px;
+	line-height: 1.2;
+	@include mq(tablet) {
+		font-size: 48px;
+	}
+	@include mq(desktop) {
+		font-size: 60px;
+	}
+}
+
+@mixin h3 {
+	@include headline-styles;
+	font-size: 28px;
+	line-height: 1.2;
+	@include mq(tablet) {
+		font-size: 32px;
+	}
+	@include mq(desktop) {
+		font-size: 36px;
+	}
+}
+
+@mixin h4 {
+	@include headline-styles;
+	font-size: 24px;
+	line-height: 1.2;
+	@include mq(tablet) {
+		font-size: 28px;
+	}
+	@include mq(desktop) {
+		font-size: 32px;
+	}
+}
+
+@mixin h5 {
+	@include headline-styles;
+	font-size: 20px;
+	line-height: 1.2;
+	font-weight: $font-weight-bold;
+
+	@include mq(tablet) {
+		font-size: 22px;
+	}
+	@include mq(desktop) {
+		font-size: 24px;
+	}
+}
+
+@mixin h6 {
+	@include headline-styles;
+	font-size: 18px;
+	line-height: 1.2;
+	font-weight: $font-weight-bold;
+
+	@include mq(desktop) {
+		font-size: 20px;
+	}
+}
+
+/*
+	sub headline styles
+*/
+@mixin sub-styles {
+	font-weight: $font-weight-medium;
+}
+
+@mixin sub-1 {
+	@include sub-styles;
+	font-size: 36px;
+	line-height: 1.3;
+
+	@include mq(tablet) {
+		font-size: 48px;
+		line-height: 1.2;
+	}
+
+	@include mq(desktop) {
+		font-size: 64px;
+		line-height: 1.15;
+	}
+}
+
+@mixin sub-2 {
+	@include sub-styles;
+	font-size: 28px;
+	line-height: 1.35;
+
+	@include mq(tablet) {
+		font-size: 32px;
+		line-height: 1.2;
+	}
+
+	@include mq(desktop) {
+		font-size: 48px;
+	}
+}
+
+@mixin sub-3 {
+	@include sub-styles;
+	font-size: 20px;
+	line-height: 1.4;
+
+	@include mq(tablet) {
+		font-size: 24px;
+	}
+
+	@include mq(desktop) {
+		font-size: 32px;
+		line-height: 1.3
+	}
+}
+
+@mixin sub-4 {
+	@include sub-styles;
+	font-size: 18px;
+	line-height: 1.45;
+
+	@include mq(desktop) {
+		font-size: 24px;
+		line-height: 1.4;
+	}
+}
+
+/*
+	title styles
+*/
+@mixin title-styles {
+	font-weight: $font-weight-bold;
+}
+
+@mixin title-1 {
+	@include title-styles;
+	font-size: 20px;
+	line-height: 1.4;
+
+
+	@include mq(desktop) {
+		font-size: 24px;
+	}
+}
+
+@mixin title-2 {
+	@include title-styles;
+	font-size: 18px;
+	line-height: 1.45;
+
+	@include mq(desktop) {
+		font-size: 22px;
+		line-height: 1.4;
+	}
+}
+
+@mixin title-3 {
+	@include title-styles;
+	font-size: 1rem;
+	line-height: 1.5;
+
+	@include mq(desktop) {
+		font-size: 20px;
+		line-height: 1.4;
+	}
+}
+
+/*
+	quote styles
+*/
+@mixin quote-styles {
+	font-weight: $font-weight-bold;
+}
+
+@mixin quote-1 {
+	@include quote-styles;
+	font-size: 32px;
+	line-height: 1.3;
+
+	@include mq(tablet) {
+		font-size: 36px;
+	}
+
+	@include mq(desktop) {
+		font-size: 40px;
+	}
+}
+
+@mixin quote-2 {
+	@include quote-styles;
+	font-size: 24px;
+	line-height: 1.4;
+
+	@include mq(tablet) {
+		font-size: 28px;
+	}
+
+	@include mq(desktop) {
+		font-size: 32px;
+	}
+}
+
+/*
+	copy styles
+*/
+@mixin copy-styles {
+	a {
+		text-decoration: underline;
+	}
+}
+
+@mixin copy-bold-styles {
+	font-weight: $font-weight-medium;
+}
+
+@mixin copy {
+	@include copy-styles;
+	font-size: 14px;
+	line-height: 1.6;
+
+	@include mq(tablet) {
+		font-size: 1rem;
+		line-height: 1.8;
+	}
+}
+
+@mixin copy-bold {
+	@include copy;
+	@include copy-bold-styles;
+}
+
+@mixin copy-xl {
+	@include copy-styles;
+	font-size: 18px;
+	line-height: 1.45;
+
+	@include mq(tablet) {
+		font-size: 20px;
+		line-height: 1.4;
+	}
+}
+
+@mixin copy-xl-bold {
+	@include copy-xl;
+	@include copy-bold-styles;
+}
+
+@mixin copy-l {
+	@include copy-styles;
+	font-size: 16px;
+	line-height: 1.5;
+
+	@include mq(tablet) {
+		font-size: 18px;
+		line-height: 1.45;
+	}
+}
+
+@mixin copy-l-bold {
+	@include copy-l;
+	@include copy-bold-styles;
+}
+
+@mixin copy-s {
+	@include copy-styles;
+	font-size: 12px;
+	line-height: 1.6;
+
+	@include mq(tablet) {
+		font-size: 14px;
+	}
+}
+
+@mixin copy-s-bold {
+	@include copy-s;
+	@include copy-bold-styles;
+}
+
+@mixin copy-xs {
+	@include copy-styles;
+	font-size: 10px;
+	line-height: 1.8;
+
+	@include mq(tablet) {
+		font-size: 12px;
+		line-height: 1.65;
+	}
+}
+
+@mixin copy-xs-bold {
+	@include copy-xs;
+	@include copy-bold-styles;
+}
+
+/*
+	label styles
+*/
+@mixin label-styles {
+	font-weight: $font-weight-bold;
+	text-transform: uppercase;
+}
+
+@mixin label-l {
+	@include label-styles;
+	font-size: 16px;
+	line-height: 1.5;
+
+	@include mq(tablet) {
+		font-size: 18px;
+	}
+}
+
+@mixin label {
+	@include label-styles;
+	font-size: 14px;
+	line-height: 1.2;
+	letter-spacing: 0.08em;
+
+	@include mq(tablet) {
+		font-size: 16px;
+	}
+}
+
+@mixin label-s {
+	@include label-styles;
+	font-size: 12px;
+	line-height: 1.5;
+
+	@include mq(tablet) {
+		font-size: 14px;
+	}
+}
+
+/*
+	caption styles
+*/
+@mixin caption-styles {
+	letter-spacing: 0.05em;
+}
+
+@mixin caption {
+	@include caption-styles;
+	font-size: 12px;
+
+	@include mq(tablet) {
+		font-size: 14px;
+	}
+}
+
+@mixin caption-s {
+	@include caption-styles;
+	font-size: 10px;
+
+	@include mq(tablet) {
+		font-size: 12px;
+	}
+}
+
+/*
+	overline styles
+*/
+@mixin overline {
+	font-size: 12px;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	font-weight: $font-weight-bold;
+	line-height: 1.65;
+}
+
+/*
+	copy-link styles
+*/
+@mixin copy-link-styles {
+	display: inline-block;
+	color: $color-primary;
+	border-bottom: 1px solid currentColor;
+}
+
+@mixin copy-link {
+	@include copy-link-styles;
+	@include copy;
+}
+
+@mixin copy-link-s {
+	@include copy-link-styles;
+	@include copy-s;
+}
+
+.h1 {
+	@include h1;
+}
+
+.h2 {
+	@include h2;
+}
+
+.h3 {
+	@include h3;
+}
+
+.h4 {
+	@include h4;
+}
+
+.h5 {
+	@include h5;
+}
+
+.h6 {
+	@include h6;
+}
+
+.sub-1 {
+	@include sub-1;
+}
+
+.sub-2 {
+	@include sub-2;
+}
+
+.sub-3 {
+	@include sub-3;
+}
+
+.sub-4 {
+	@include sub-4;
+}
+
+.title-1 {
+	@include title-1;
+}
+
+.title-2 {
+	@include title-2;
+}
+
+.title-3 {
+	@include title-3;
+}
+
+.quote-1 {
+	@include quote-1;
+}
+
+.quote-2 {
+	@include quote-2;
+}
+
+.copy {
+	@include copy;
+}
+
+.copy-bold {
+	@include copy-bold;
+}
+
+.copy-xl {
+	@include copy-xl;
+}
+
+.copy-xl-bold {
+	@include copy-xl-bold;
+}
+
+.copy-l {
+	@include copy-l;
+}
+
+.copy-l-bold {
+	@include copy-l-bold;
+}
+
+.copy-s {
+	@include copy-s;
+}
+
+.copy-s-bold {
+	@include copy-s-bold;
+}
+
+.copy-xs {
+	@include copy-xs;
+}
+
+.copy-xs-bold {
+	@include copy-xs-bold;
+}
+
+.label-l {
+	@include label-l;
+}
+
+.label {
+	@include label;
+}
+
+.label-s {
+	@include label-s;
+}
+
+.caption {
+	@include caption;
+}
+
+.caption-s {
+	@include caption-s;
+}
+
+.overline {
+	@include overline;
+}
+
+.copy-link {
+	@include copy-link;
+}
+
+.copy-link-s {
+	@include copy-link-s;
+}

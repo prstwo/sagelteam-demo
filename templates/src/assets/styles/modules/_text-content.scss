@@ -1,0 +1,53 @@
+.text-content {
+	$block: &;
+
+	margin: 100px 0;
+
+	@include mq(tablet) {
+		margin: 120px 0;
+	}
+
+	@include mq(desktop) {
+		margin: 180px 0;
+	}
+
+	&__inner {
+		@include grid;
+	}
+
+	&__top {
+		grid-column: 1 / -1;
+
+		@include mq(tablet) {
+			grid-column: 1 / span 3;
+		}
+
+		@include mq(tablet-landscape) {
+			grid-column: 1 / span 4;
+		}
+	}
+
+	&__headline {
+		margin-bottom: $spacing-04;
+	}
+
+	&__text {
+		grid-column: 1 / -1;
+		margin-top: $spacing-04;
+
+		@include mq(tablet) {
+			grid-column: 5 / span 4;
+			margin-top: 0;
+		}
+
+		@include mq(tablet-landscape) {
+			grid-column: 5 / span 8;
+			column-count: 2;
+			column-gap: $spacing-07;
+		}
+
+		@include mq(desktop) {
+			column-gap: $spacing-08;
+		}
+	}
+}

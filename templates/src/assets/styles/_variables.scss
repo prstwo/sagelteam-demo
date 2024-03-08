@@ -1,0 +1,163 @@
+@use 'sass:color';
+
+// Typography
+$font-size-base: 16px;
+$font-family: Inter, Helvetica, Arial, sans-serif;
+$line-height: 1.5;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-extra-bold: 700;
+
+// Breakpoints
+$mq-breakpoints: (
+	mobile: 350px,
+	mobile-landscape: 480px,
+	tablet: 760px,
+	tablet-landscape: 980px,
+	desktop: 1180px,
+	notebook: 1440px,
+	laptop: 1650px,
+	page: 1920px,
+);
+
+// Window height
+$fullheight: calc(var(--vh, 1vh) * 100);
+
+// Grid
+$grid-gutter: 8px; 
+
+// Page padding
+$page-padding-small: 20px;
+$page-padding-big: 80px;
+
+// Spacings
+$spacing-01: 0.125rem; // 2px
+$spacing-02: 0.25rem; // 4px
+$spacing-03: 0.5rem; // 8px
+$spacing-04: 1rem; // 16px
+$spacing-05: 1.5rem; // 24px
+$spacing-06: 2rem; // 32px
+$spacing-07: 2.5rem; // 40px
+$spacing-08: 4rem; // 64px
+$spacing-09: 5rem; // 80px
+$spacing-10: 10rem; // 160px
+
+// Shadows
+$shadow-xs: 0px 0px 2px rgba(0, 0, 0, 0.08);
+$shadow-s: 0px 0px 4px rgba(0, 0, 0, 0.08);
+$shadow-m: 0px 0px 8px rgba(0, 0, 0, 0.08);
+$shadow-l: 0px 0px 16px rgba(0, 0, 0, 0.08);
+$shadow-xl: 0px 0px 24px rgba(0, 0, 0, 0.08);
+
+// Containers
+$container-widths: (
+	small: 760px,
+	medium: 1100px,
+	default: 1440px,
+	width: 1800px,
+	hd: 1920px,
+);
+
+// Module spacings
+$module-spacings: (
+	none: 0,
+	small: 80px,
+	medium: 100px,
+	big: 140px,
+);
+
+$module-spacings-desktop: (
+	none: 0,
+	small: 80px,
+	medium: 120px,
+	big: 180px,
+);
+
+// Z-indexes
+$z-index-navigation: 20;
+$z-index-page-dimmer: 100; 
+$z-index-overlay: 120; 
+
+/*
+*** Colors ***
+*/
+// Primary color
+$color-primary: #C4132F;
+$color-primary-hover: color.adjust($color-primary, $lightness: -10%);
+$color-primary-pressed: color.adjust($color-primary, $lightness: -20%);
+$color-primary-light: color.adjust($color-primary, $lightness: 20%);
+$color-primary-disabled: color.adjust($color-primary, $lightness: 40%);
+
+$color-light-grey: #E5EAEE;
+
+// Neutral colors
+$color-light: #ffffff;
+$color-neutral-5: #F9F9F9;
+$color-neutral-10: #E6E6E6;
+$color-neutral-15: #D9D9D9;
+$color-neutral-30: #B3B3B3;
+$color-neutral-50: #999999;
+$color-neutral-60: #808080;
+$color-neutral-70: #666666;
+$color-neutral-80: #4D4D4D;
+$color-neutral-90: #333333;
+$color-neutral-95: #1A1A1A;
+$color-dark: #181818;
+
+// Text colors
+$color-text-primary: #C4132F;
+$color-text-primary-dark:  color.adjust($color-text-primary, $lightness: -20%);
+$color-text-light: #ffffff;
+$color-text-neutral: #b2b2b2;
+$color-text-dark: #181818;
+
+// Background colors
+$bg-colors: (
+	none: none, // used as default
+);
+
+// Border Radius / Shape
+$border-radius-xxs: 2px;
+$border-radius-xs: 4px;
+$border-radius-s: 8px;
+$border-radius-m: 16px;
+$border-radius-l: 24px;
+$border-radius-xl: 32px;
+$border-radius-xxl: 48px;
+
+// Easings
+$linear				: cubic-bezier(0.250, 0.250, 0.750, 0.750);
+$ease				: cubic-bezier(0.250, 0.100, 0.250, 1.000);
+$ease-in			: cubic-bezier(0.420, 0.000, 1.000, 1.000);
+$ease-out			: cubic-bezier(0.000, 0.000, 0.580, 1.000);
+$ease-in-out		: cubic-bezier(0.420, 0.000, 0.580, 1.000);
+
+$ease-in-quad		: cubic-bezier(0.550, 0.085, 0.680, 0.530);
+$ease-in-cubic		: cubic-bezier(0.550, 0.055, 0.675, 0.190);
+$ease-in-quart		: cubic-bezier(0.895, 0.030, 0.685, 0.220);
+$ease-in-quint		: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+$ease-in-sine		: cubic-bezier(0.470, 0.000, 0.745, 0.715);
+$ease-in-expo		: cubic-bezier(0.950, 0.050, 0.795, 0.035);
+$ease-in-circ		: cubic-bezier(0.600, 0.040, 0.980, 0.335);
+$ease-in-back		: cubic-bezier(0.600, -0.280, 0.735, 0.045);
+
+$ease-out-quad		: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+$ease-out-cubic		: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+$ease-out-quart		: cubic-bezier(0.165, 0.840, 0.440, 1.000);
+$ease-out-quint		: cubic-bezier(0.230, 1.000, 0.320, 1.000);
+$ease-out-sine		: cubic-bezier(0.390, 0.575, 0.565, 1.000);
+$ease-out-expo		: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+$ease-out-circ		: cubic-bezier(0.075, 0.820, 0.165, 1.000);
+$ease-out-back		: cubic-bezier(0.175, 0.885, 0.320, 1.275);
+
+$ease-in-out-quad	: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+$ease-in-out-cubic	: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+$ease-in-out-quart	: cubic-bezier(0.770, 0.000, 0.175, 1.000);
+$ease-in-out-quint	: cubic-bezier(0.860, 0.000, 0.070, 1.000);
+$ease-in-out-sine	: cubic-bezier(0.445, 0.050, 0.550, 0.950);
+$ease-in-out-expo	: cubic-bezier(1.000, 0.000, 0.000, 1.000);
+$ease-in-out-circ	: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+$ease-in-out-back	: cubic-bezier(0.680, -0.550, 0.265, 1.550);
+
+// predefined transitions
+$base_link_transition: 100ms $ease-in-out;

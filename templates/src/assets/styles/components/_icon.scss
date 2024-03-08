@@ -1,0 +1,17 @@
+.icon {
+	display: inline-block;
+	svg {
+		width: 1em;
+		height: 1em;
+		display: block;
+		fill: currentColor;
+	}
+	path {
+		fill: currentColor;
+	}
+	img {
+		height: 1em;
+		width: auto;
+		display: block;
+	}
+}

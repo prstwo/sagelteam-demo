@@ -1,0 +1,13 @@
+node_modules
+templates/dist
+.sass-cache
+.sublime-gulp.cache
+.eslintcache
+.prettierrc
+npm-debug.log
+package-lock.json
+yarn-lock.json
+project.config.js
+project.config.mjs
+templates/both-builds
+templates/production-build

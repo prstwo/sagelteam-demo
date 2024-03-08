@@ -1,0 +1,13 @@
+@mixin grid() {
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	column-gap: $grid-gutter;
+
+	@include mq(tablet) {
+		grid-template-columns: repeat(8, minmax(0, 1fr));
+	}
+
+	@include mq(tablet-landscape) {
+		grid-template-columns: repeat(12, minmax(0, 1fr));
+	}
+}

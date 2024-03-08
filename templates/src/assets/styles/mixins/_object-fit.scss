@@ -1,0 +1,6 @@
+@mixin object-fit($fit: cover, $position: center) {
+	object-fit: $fit;
+	object-position: $position;
+	width: 100%;
+	height: 100%;
+}

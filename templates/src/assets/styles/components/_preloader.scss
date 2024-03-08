@@ -1,0 +1,61 @@
+.preloader {
+	$block: &;
+
+	color: $color-primary;
+	font-size: 14px;
+
+	// colors
+	&--white {
+		color: #fff;
+	}
+	&--black {
+		color: $color-dark;
+	}
+
+	// sizes
+	&--big {
+		font-size: 24px;
+	}
+	
+	&__box {
+		width: 1em;
+		height: 1em;
+		animation: clockwise 500ms linear infinite;
+	}
+	&__cut {
+		position: relative;
+		width: 0.5em;
+		height: 1em;
+		overflow: hidden;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+	&__donut {
+		box-sizing: border-box;
+		width: 1em;
+		height: 1em;
+		border: 2px solid currentColor;
+		border-radius: 50%;
+		border-left-color: transparent;
+		border-bottom-color: transparent;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: none;
+		margin:0;
+		animation: donut-rotate 1000ms cubic-bezier(.4,0,.22,1) infinite;
+	}
+}
+
+
+
+@keyframes clockwise {
+	0% { transform: rotate(0deg) }
+	100% { transform: rotate(360deg) }
+}
+@keyframes donut-rotate {
+	0% { transform: rotate(0) }
+	50% { transform: rotate(-140deg) }
+	100% { transform: rotate(0) }
+}
