@@ -16,10 +16,10 @@ include($root_path . '/partials/head.php');
 						<a class="navigation__links__item label color-light" href="#">About us</a>
 					</li>
 					<li>
-						<a class="navigation__links__item label color-light" href="#">Gallery</a>
+						<a class="navigation__links__item label color-light" href="#gallery">Gallery</a>
 					</li>
 					<li>
-						<a class="navigation__links__item label color-light" href="#">Crew</a>
+						<a class="navigation__links__item label color-light" href="#crew">Crew</a>
 					</li>
 				</ul>
 
@@ -69,34 +69,34 @@ include($root_path . '/partials/head.php');
 			</div>
 		</div>
 	</div>
-		<div class="hero__teasers">
-			<?php for ($i = 0; $i < 3; $i++) {
-				$style = null;
-				$illustration = null;
-				if ($i == 1)
-					$style = 'black';
-				if ($i == 2)
-					$illustration = '/assets/images/map.svg';
-				echo generate_component_teaser([
-					'style' => $style,
-					'illustration' => $illustration,
-					'uptitle' => '0' . $i + 1 . ' Mai',
-					'headline' => [
-						'label' => 'My teaser title',
-						'tag' => 'h2',
-						'tag_class' => $i < 2 ? 'h5' : 'h3',
-					],
-					'subtitle' => 'Subtitle',
-					'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-				]);
-			} ?>
-		</div>
+	<div class="hero__teasers">
+		<?php for ($i = 0; $i < 3; $i++) {
+			$style = null;
+			$illustration = null;
+			if ($i == 1)
+				$style = 'black';
+			if ($i == 2)
+				$illustration = '/assets/images/map.svg';
+			echo generate_component_teaser([
+				'style' => $style,
+				'illustration' => $illustration,
+				'uptitle' => '0' . $i + 1 . ' Mai',
+				'headline' => [
+					'label' => 'My teaser title',
+					'tag' => 'h2',
+					'tag_class' => $i < 2 ? 'h5' : 'h3',
+				],
+				'subtitle' => 'Subtitle',
+				'text' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+			]);
+		} ?>
+	</div>
 </section>
 
 <section class="text-content">
 	<div class="container">
 		<div class="text-content__inner">
-			<div class="text-content__top">
+			<div class="text-content__top" id="gallery">
 				<?php echo generate_component_headline([
 					'label' => 'This is my headline',
 					'tag' => 'h2',
@@ -146,7 +146,8 @@ include($root_path . '/partials/head.php');
 </section>
 
 <div>
-	<crew-section data-component='{"factory": "vue", "component":"crew-section"}' />
+	<last-sections data-component='{"factory": "vue", "component":"crew-section"}' />
+	<!-- <crew-section data-component='{"factory": "vue", "component":"crew-section"}' /> -->
 	<!-- <footer-section data-component='{"factory": "vue", "component":"footer-section"}' /> -->
 
 </div>

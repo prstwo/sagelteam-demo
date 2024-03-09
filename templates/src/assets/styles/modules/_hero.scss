@@ -66,29 +66,41 @@
 			margin: 0 #{-$page-padding-big};
 			padding: 0 80px;
 		}
+	
 
 		@include mq(tablet-landscape) {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
-			.teaser:last-child {
+			align-items: flex-end;
+			.teaser {
 				z-index: 2;
-				// clip-path: polygon(0 31%, 100% 0, 100% 100%, 0% 100%);
-				clip-path: polygon(0 100px, 100% 0, 100% 100%, 0% 100%);
+			}
+			.teaser:last-child {
+				clip-path: polygon(0 102px, 100% 0, 100% 100%, 0% 100%);
 			}
 			.teaser:nth-child(2) {
-				z-index: 2;
-				clip-path: polygon(0% 50px, 100px 0, 323% 100%, 0% 100%);
+				height: calc(100% + 68px);
+				clip-path: polygon(0% 0, 100% 50px, 100% 100%, 0% 100%);
+				padding-top: 116px;
 			}
 			.teaser:first-child {
-				z-index: 2;
-				clip-path: polygon(0% 0, 100% 50px, 100% 100%, 0% 100%);
+				clip-path: polygon(0% 0, 100% 52px, 100% 100%, 0% 100%);
 			}
 		}
+	
 
 		.teaser {
+		
 			@include mq(tablet-landscape) {
-				padding-top: calc(120px + 66px);
+				padding-top: calc(120px + 50px);
 				margin-top: -120px;
+				height: 371px;
+				&__content {
+					height: 180px;
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-start;
+				}
 			}
 
 			&:first-child {

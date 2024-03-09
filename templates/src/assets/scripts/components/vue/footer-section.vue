@@ -8,15 +8,15 @@ const footerRightPartOne = ref([
 	},
 	{
 		name: 'Gallery',
-		href: '#',
+		href: '#gallery',
 	},
 	{
 		name: 'Crew',
-		href: '#',
+		href: '#crew',
 	},
 	{
 		name: 'Contact',
-		href: '#',
+		href: '#contact',
 	},
 ]);
 const footerRightPartTwo = ref([
@@ -39,7 +39,7 @@ const footerRightPartTwo = ref([
 ]);
 </script>
 <template>
-	<section class="footer" id="#contact">
+	<section class="footer" id="contact">
 		<div class="footer__two__parts">
 			<div class="footer__left">
 				<a href="#" class="footer__logo">
@@ -71,6 +71,48 @@ const footerRightPartTwo = ref([
 							<a :href="item.href">{{ item.name }}</a>
 						</li>
 					</ul>
+				</div>
+				<div class="footer__social">
+					<a
+						target="_blank"
+						href="https://icons8.com/icon/437/facebook"
+						alt="facebook icon by icons8"
+					>
+						<img
+							src="/assets/images/social/facebook-icon.png"
+							alt=""
+						/>
+					</a>
+					<a
+						target="_blank"
+						href="https://icons8.com/icon/437/twitter"
+						alt="twitter icon by icons8"
+					>
+						<img
+							src="/assets/images/social/twitter-icon.png"
+							alt=""
+						/>
+					</a>
+					<a
+						target="_blank"
+						href="https://icons8.com/icon/437/instagram"
+						alt="instagram icon by icons8"
+					>
+						<img
+							src="/assets/images/social/instagram-icon.png"
+							alt=""
+						/>
+					</a>
+					<a
+						target="_blank"
+						href="https://icons8.com/icon/437/youtube"
+						alt="youtube icon by icons8"
+					>
+						<img
+							src="/assets/images/social/youtube-icon.png"
+							alt=""
+						/>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -135,6 +177,10 @@ const footerRightPartTwo = ref([
 	ul {
 		margin-block-start: 0;
 		margin-block-end: 0;
+		padding-inline-start:0;
+	}
+	ul:not(:first-child){
+		padding-left: 40px;
 	}
 	ul li {
 		list-style-type: none;
@@ -162,5 +208,18 @@ const footerRightPartTwo = ref([
 .footer__copyright {
 	font-size: 14px;
 	color: $color-light;
+}
+.footer__social {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	a {
+		display: block;
+		margin-right: 32px;
+	}
+	img {
+		width: 24px;
+		height: auto;
+	}
 }
 </style>

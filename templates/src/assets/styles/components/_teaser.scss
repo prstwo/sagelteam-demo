@@ -33,9 +33,15 @@
 	&__uptitle {
 		margin-bottom: $spacing-05;
 	}
+	@include mq(tablet-landscape) {
+		&:last-child .teaser__uptitle{
+			margin-bottom: $spacing-03;
+		}
+	}
 
 	&__headline,
 	&__subtitle {
 		margin-bottom: $spacing-03;
 	}
+
 }

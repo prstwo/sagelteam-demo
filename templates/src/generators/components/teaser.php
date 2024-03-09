@@ -10,8 +10,9 @@ $data = [
 ];
 */
 
-if(!function_exists('generate_component_teaser')){
-	function generate_component_teaser($data){
+if (!function_exists('generate_component_teaser')) {
+	function generate_component_teaser($data)
+	{
 
 		// Settings
 		$data_defaults = [
@@ -29,23 +30,31 @@ if(!function_exists('generate_component_teaser')){
 		// Template
 		?>
 
-		<div class="teaser <?= $style ? 'teaser--style--'.$style : '' ?>">
-			<?php if($illustration) { ?>
+		<div class="teaser <?= $style ? 'teaser--style--' . $style : '' ?>">
+			<?php if ($illustration) { ?>
 				<img class="teaser__illustration" src="<?= $illustration ?>" />
 			<?php } ?>
-			<?php if($uptitle) { ?>
-				<div class="teaser__uptitle label"><?= $uptitle ?></div>
-			<?php } ?>
-			<?php if($headline) {
-				$headline['class'] = 'teaser__headline color-primary';
-				echo generate_component_headline($headline);
-			} ?>
-			<?php if($subtitle) { ?>
-				<div class="teaser__subtitle label"><?= $subtitle ?></div>
-			<?php } ?>
-			<?php if($text) { ?>
-				<div class="teaser__text copy"><?= $text ?></div>
-			<?php } ?>
+			<div class="teaser__content">
+				<?php if ($uptitle) { ?>
+					<div class="teaser__uptitle label">
+						<?= $uptitle ?>
+					</div>
+				<?php } ?>
+				<?php if ($headline) {
+					$headline['class'] = 'teaser__headline color-primary';
+					echo generate_component_headline($headline);
+				} ?>
+				<?php if ($subtitle) { ?>
+					<div class="teaser__subtitle label">
+						<?= $subtitle ?>
+					</div>
+				<?php } ?>
+				<?php if ($text) { ?>
+					<div class="teaser__text copy">
+						<?= $text ?>
+					</div>
+				<?php } ?>
+			</div>
 		</div>
 
 		<?php

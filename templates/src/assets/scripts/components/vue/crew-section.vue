@@ -16,7 +16,7 @@ const showLoadMore = ref(true); // define if load more button should be shown
 const selectedPageSize = ref(5);
 
 // Function to fetch data from the API
-const fetchDataFromAPI = async () => {
+const fetchDataFromAPI = async (shouldResetCrew = false) => {
 	try {
 		loading.value = true; // Set loading state to true before making the API call
 
@@ -31,7 +31,9 @@ const fetchDataFromAPI = async () => {
 			true,
 			'0123456789'
 		);
-
+		if (shouldResetCrew === true) {
+			crewMembers.value = null;
+		}
 		// Update the crewMembers variable with the response
 		if (crewMembers.value !== null) {
 			crewMembers.value.data.push(...response.data.data);
@@ -60,27 +62,30 @@ const fetchDataFromAPI = async () => {
 		loadMoreLoading.value = false; // Set load more loading state to false  after fetching data
 	}
 };
-fetchDataFromAPI();
+fetchDataFromAPI(false);
 // changing duty
 const changeDuty = (dutyString) => {
 	duty.value = dutyString;
-	crewMembers.value = null;
 	page.value = 1;
-	fetchDataFromAPI();
+	fetchDataFromAPI(true);
 };
 // default pagesize for fetched data
 const pagesizeTotal = ref(6);
 // pagesize div in DOM
 const selctedNumbersPerRow = ref(5);
-const changePageSize = (i) => {
-	selctedNumbersPerRow.value = i;
+const changePageSize = async (i) => {
 	page.value = 1;
-	crewMembers.value = null;
-	selectedPageSize.value = i;
+	if (windowWidth.value > 980) {
+		// in desktop
+		selectedPageSize.value = i;
+	} else {
+		// in mobile
+		selectedPageSize.value = 5;
+	}
+	await fetchDataFromAPI(true);
+	selctedNumbersPerRow.value = i;
 };
-watch(selectedPageSize, () => {
-	fetchDataFromAPI();
-});
+
 const crewPagesizeLinks = ref();
 const store = useStore();
 const windowWidth = computed(() => store.state.windowWidth);
@@ -89,8 +94,13 @@ onMounted(() => {
 	if (crewPagesizeLinks.value) {
 		if (windowWidth.value > 980) {
 			selectedPageSize.value = 5;
+			selctedNumbersPerRow.value = 5;
+			fetchDataFromAPI(true);
 		} else {
-			selectedPageSize.value = 1;
+			selectedPageSize.value = 5;
+			selctedNumbersPerRow.value = 1;
+
+			fetchDataFromAPI(true);
 		}
 	}
 });
@@ -98,7 +108,7 @@ onMounted(() => {
 const loadMore = () => {
 	page.value = page.value + 1;
 	loadMoreLoading.value = true;
-	fetchDataFromAPI();
+	fetchDataFromAPI(false);
 };
 </script>
 
@@ -183,7 +193,7 @@ const loadMore = () => {
 					</div>
 				</div>
 			</div>
-			<div class="crew__members__container">
+			<div class="crew__members__container" id="crew">
 				<div
 					:class="`grid-container-${selctedNumbersPerRow}`"
 					v-if="crewMembers"
@@ -193,13 +203,20 @@ const loadMore = () => {
 						v-for="(crewItem, index) of crewMembers.data"
 						:key="index"
 					>
-						<img :src="crewItem.image" :alt="crewItem.name" class="lazyload"/>
+						<img
+							:src="crewItem.image"
+							:alt="crewItem.name"
+							class="lazyload"
+						/>
 						<div class="crew__info">
 							<h3 class="color-primary">{{ crewItem.name }}</h3>
-							<p v-for="(duty, dIndex) of crewItem.duty_slugs" :key="dIndex">
-								<span class="crew__identifier">
-									a
-								</span> {{ duty }}</p>
+							<p
+								v-for="(duty, dIndex) of crewItem.duty_slugs"
+								:key="dIndex"
+							>
+								<span class="crew__identifier"> a </span>
+								{{ duty }}
+							</p>
 						</div>
 					</div>
 				</div>
@@ -225,7 +242,9 @@ const loadMore = () => {
 						<li v-for="i of pagesizeTotal" :key="i">
 							<label
 								class="label"
-								:class="i > 2 && 'mobile-hidden'"
+								:class="
+									i > 2 ? 'mobile-hidden' : 'desktop-hidden'
+								"
 								:for="`crew_page_${i}`"
 							>
 								<input
@@ -298,8 +317,8 @@ const loadMore = () => {
 }
 
 label.crew__links__item {
+	cursor: pointer;
 	color: $color-light;
-
 	&:has(input:checked) {
 		color: $color-primary;
 	}
@@ -380,15 +399,15 @@ $maximumGridContainers: 6;
 	border: 1px solid #ccc;
 	z-index: -1;
 }
-.crew__info{
-	p, h3{
+.crew__info {
+	p,
+	h3 {
 		margin-bottom: 8px;
 	}
 }
-.crew__info p:first-of-type .crew__identifier{
+.crew__info p:first-of-type .crew__identifier {
 	text-transform: uppercase;
 }
-
 
 @media (max-width: 47.49em) {
 	.crew__header {
@@ -428,6 +447,11 @@ $maximumGridContainers: 6;
 			color: $color-primary;
 			border-bottom-color: $color-primary;
 		}
+	}
+}
+@media ((min-width: 47.5em)) {
+	li:has(label.desktop-hidden) {
+		display: none;
 	}
 }
 @media (max-width: 47.49em) {
